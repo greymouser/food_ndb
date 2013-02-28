@@ -1,0 +1,133 @@
+<!--
+    http://www.jonathoncihlar.com/index.php?Post=nutritiontemplate
+    The following XHTML snippet builds a basic nutrition label when accompanied by the
+    nutrition.css stylesheet. The code is free, and you may use it as you wish. Crediting the author
+    is always appreciated.
+    Jonathon Eric Cihlar, January 2007
+
+    Further styling and formatting
+    Armando Di Cianno, February 2013
+-->
+<p>
+<%= @food.group.description %><br />
+<%= @food.long_description %>
+</p>
+<table class="nutrition_info" summary="Nutritional information for <%= @food.long_description %>">
+  <caption>Nutritional information</caption>
+  <tr>
+    <th colspan="2">Nutrition Facts</th>
+  </tr>
+  <tr id="servings">
+    <td class="noborder" colspan="2">
+      Serving Size
+      <input type="text" name="number_of_servings" size="2" maxlength="2" value="1" min="1" pattern="[0-9]*" />
+      <select>
+        <% @food.weights.each do |w| %>
+            <option value=<%= w.gram_weight %>>
+                x <%= w.amount.to_i %> <%= w.description %> (<%= w.gram_weight %>g)
+            </option>
+        <% end %>
+      </select>
+    </td>
+  </tr>
+  <tr id="bigbreak">
+    <td class="noborder" colspan="2">
+      <hr />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">Amount Per Serving</td>
+  </tr>
+  <tr id="calories">
+    <td><span class="nutrient_name">Calories</span> <%= number_to_human(@food.calories) %></td>
+    <td id="calories_from_fat">Calories from Fat <%= number_to_human(@food.calories_fat) %> </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="dv">% Daily Value *</td>
+  </tr>
+  <tr>
+    <td>
+      <span class="nutrient_name">Total Fat</span> <%= @food.display_nutrient(:FAT) %>
+    </td>
+    <td class="dv">14%</td>
+  </tr>
+  <tr>
+    <td class="sub">
+        <span class="nutrient_name">Saturated Fat</span> <%= @food.display_nutrient(:FASAT) %>
+    </td>
+    <td class="dv">10%</td>
+  </tr>
+  <tr>
+    <td class="sub">
+        <span class="nutrient_name">Monounsatured Fat</span> <%= @food.display_nutrient(:FAMS) %>
+    </td>
+    <td class="dv"></td>
+  </tr>
+  <tr>
+    <td class="sub">
+      <span class="nutrient_name">Polyunsaturated Fat</span> <%= @food.display_nutrient(:FAPU) %>
+    <td class="dv"></td>
+  </tr>
+  <tr>
+    <td class="sub">
+      <span class="nutrient_name">Trans Fat</span> <%= @food.display_nutrient(:FATRN) %>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <span class="nutrient_name">Cholesterol</span> <%= @food.display_nutrient(:CHOLE) %>
+    </td>
+    <td class="dv">0%</td>
+  </tr>
+  <tr>
+    <td>
+      <span class="nutrient_name">Sodium</span> <%= @food.display_nutrient(:NA) %>
+    </td>
+    <td class="dv">7%</td>
+  </tr>
+  <tr>
+    <td>
+      <span class="nutrient_name">Potassium</span> <%= @food.display_nutrient(:K) %>
+    </td>
+    <td class="dv">2%</td>
+  </tr>
+  <tr>
+    <td><strong>Total Carbohydrate</strong> <%= @food.display_nutrient(:CHOCDF) %></td>
+    <td class="dv">10%</td>
+  </tr>
+  <tr>
+    <td class="sub">Dietary Fiber <%=  @food.display_nutrient(:FIBTG) %></td>
+    <td class="dv">8%</td>
+  </tr>
+  <tr>
+    <td class="sub">Sugars <%=  @food.display_nutrient(:SUGAR) %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Protein</strong> <%=  @food.display_nutrient(:PROCNT) %></td>
+    <td class="dv">4%</td>
+  </tr>
+  <tr id="minerals">
+    <td>Vitamin A</td>
+    <td class="dv">1%</td>
+  </tr>
+  <tr>
+    <td>Vitamin C</td>
+    <td class="dv">0%</td>
+  </tr>
+  <tr>
+    <td>Calcium</td>
+    <td class="dv">4%</td>
+  </tr>
+  <tr>
+    <td>Iron</td>
+    <td class="dv">7%</td>
+  </tr>
+  <tr>
+    <td id="disclaimer" colspan="2">
+      * The Percent Daily Values are based on a 2,000 calorie diet, so your values may change depending on your calorie needs.
+      The values here may not be 100% accurate because the recipes have not been professionally evaluated nor have they been evaluated by the U.S. FDA.
+    </td>
+  </tr>
+</table>
