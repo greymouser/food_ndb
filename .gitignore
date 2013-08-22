@@ -17,3 +17,4 @@ pickle-email-*.html
 /test/dummy/log/*
 /test/dummy/tmp/*
 /test/dummy/db/*.sqlite3
+.rvmrc
