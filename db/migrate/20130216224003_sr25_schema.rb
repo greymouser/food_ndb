@@ -1,5 +1,5 @@
 class Sr25Schema < ActiveRecord::Migration
-  def up
+  def change
     create_table :food_ndb_data_sources, id: false, primary_key: :id do |t|
       t.string :id,             limit: 6,   :null => false
       t.string :authors,        limit: 255
@@ -142,20 +142,5 @@ class Sr25Schema < ActiveRecord::Migration
     end
     add_index :food_ndb_weights,
               [:nutrient_databank_number, :sequence]
-  end
-
-  def down
-    drop_table :food_ndb_weights
-    drop_table :food_ndb_sources
-    drop_table :food_ndb_nutrients
-    drop_table :food_ndb_languals
-    drop_table :food_ndb_footnotes
-    drop_table :food_ndb_foods_languals
-    drop_table :food_ndb_foods
-    drop_table :food_ndb_food_nutrients_data_sources
-    drop_table :food_ndb_food_nutrients
-    drop_table :food_ndb_food_groups
-    drop_table :food_ndb_derivations
-    drop_table :food_ndb_data_sources
   end
 end
