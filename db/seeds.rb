@@ -3,12 +3,11 @@
 
 require 'activerecord-import'
 
-sr_dir = Rake.application.original_dir + "/db/sr25/sr25"
+sr_dir = Rake.application.original_dir + "/db/sr25/sr25/sr25"
 
 def parse_line(line)
-  line.encode!('UTF-8', 'UTF-8', :invalid => :replace)
   data_array = []
-  line.split('^').each do |data|
+  line.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').split('^').each do |data|
     item = data.chomp().chomp('~').reverse().chomp().chomp('~').reverse().chomp
     data_array << item
   end
@@ -205,6 +204,8 @@ File.foreach("#{sr_dir}/DATSRCLN.txt") do |line|
   if count % 2000 == 0
     print '.'
     STDOUT.flush
+    FoodNdb::FoodNutrientsDataSources.import data
+    data = []
   end
 end
 FoodNdb::FoodNutrientsDataSources.import data
@@ -229,7 +230,7 @@ File.foreach("#{sr_dir}/NUT_DATA.txt") do |line|
     x.source_code = data_array[5]
     x.derivation_code = data_array[6]
     x.reference_nutrient_databank_number = data_array[7]
-    x.enriched = data_array[8]
+    x.enriched = data_array[8].to_i
     x.number_of_studies = data_array[9]
     x.min = data_array[10]
     x.max = data_array[11]
@@ -244,6 +245,8 @@ File.foreach("#{sr_dir}/NUT_DATA.txt") do |line|
   if count % 12000 == 0
     print '.'
     STDOUT.flush
+    FoodNdb::FoodNutrient.import data
+    data = []
   end
 end
 FoodNdb::FoodNutrient.import data

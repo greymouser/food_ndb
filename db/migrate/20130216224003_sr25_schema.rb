@@ -35,7 +35,7 @@ class Sr25Schema < ActiveRecord::Migration
       t.decimal :points_of_data,                               precision: 5,  scale: 0, null: false
       t.decimal :standard_error,                               precision: 11, scale: 3
       t.string  :source_code,                        limit: 2,                          null: false
-      t.string  :derivation_code,                    limit: 3
+      t.string  :derivation_code,                    limit: 4
       t.string  :reference_nutrient_databank_number, limit: 5
       t.boolean :enriched
       t.integer :number_of_studies,                  limit: 1
@@ -102,8 +102,8 @@ class Sr25Schema < ActiveRecord::Migration
       t.string  :the_text,                 limit: 200, null: false
     end
     add_index :food_ndb_footnotes,
-              [:nutrient_databank_number, :sequence, :type],
-              name: 'by_food_sequence_and_type'
+              [:nutrient_databank_number, :sequence, :the_type],
+              name: 'by_food_sequence_and_the_type'
 
 
     create_table :food_ndb_languals, id: false, primary_key: :code do |t|
