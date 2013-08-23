@@ -17,9 +17,9 @@ gemspec
 # gem 'debugger'
 
 # seeding uses this - much faster than 1 by 1, and easier than down to sql
-#gem 'activerecord-import'
+gem 'activerecord-import', '>= 0.4.0'
 
 ####
 # You're going to have a bad time if you test food_ndb with sqlite3
 gem 'mysql2'
-gem 'draper', '~> 1.1.0'
+gem 'draper'
