@@ -21,5 +21,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activerecord-import', '~> 0.4.0'
   s.add_dependency 'draper'
-  s.add_development_dependency "mysql2"
+  #######################################
+  ### development deps
+  s.add_development_dependency 'mysql2'
+  s.add_dependency 'will_paginate'
 end

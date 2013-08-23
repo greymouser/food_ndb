@@ -23,3 +23,4 @@ gem 'activerecord-import', '>= 0.4.0'
 # You're going to have a bad time if you test food_ndb with sqlite3
 gem 'mysql2'
 gem 'draper'
+gem 'will_paginate'

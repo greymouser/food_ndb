@@ -5,7 +5,7 @@ module FoodNdb
     # GET /foods
     # GET /foods.json
     def index
-      @foods = Food.all
+      @foods = Food.all.paginate(:page => params[:page])
 
       respond_to do |format|
         format.html # index.html.erb
