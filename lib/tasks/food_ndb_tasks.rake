@@ -3,7 +3,8 @@
 #require 'rails/all'
 #require 'rails/engine/commands'
 #require File.dirname(__FILE__) + "/../food_ndb.rb"
-#sr_dir = "#{Rake.application.original_dir}/db/sr25/sr25"
+
+sr_dir = "#{Rake.application.original_dir}/db/sr25/sr25"
 
 desc "Git clone SR25 NDB to local machine"
 task "food_ndb:fetch:ndb" do
