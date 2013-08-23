@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "test_engine"
+require "food_ndb"
 
 module Dummy
   class Application < Rails::Application
