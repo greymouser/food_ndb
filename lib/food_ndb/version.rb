@@ -1,3 +1,3 @@
 module FoodNdb
-  VERSION = "25.0.1"
+  VERSION = "26.0.1"
 end

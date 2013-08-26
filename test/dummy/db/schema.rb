@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823193611) do
+ActiveRecord::Schema.define(version: 20130826170150) do
 
   create_table "food_ndb_data_sources", id: false, force: true do |t|
     t.string "id",             limit: 6,   null: false

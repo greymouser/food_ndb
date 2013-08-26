@@ -21,3 +21,4 @@ pickle-email-*.html
 .rvmrc
 test/dummy/db/us_ndb_ref
 test/dummy/db/migrate/20130823193611_sr25_schema.food_ndb.rb
+test/dummy/db/migrate/
