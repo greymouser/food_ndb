@@ -1,3 +1,4 @@
+.DS_Store
 *.rbc
 *.sassc
 .sass-cache
@@ -18,5 +19,5 @@ pickle-email-*.html
 /test/dummy/tmp/*
 /test/dummy/db/*.sqlite3
 .rvmrc
-test/dummy/db/sr25/
+test/dummy/db/us_ndb_ref
 test/dummy/db/migrate/20130823193611_sr25_schema.food_ndb.rb
