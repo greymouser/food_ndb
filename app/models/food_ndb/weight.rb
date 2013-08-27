@@ -1,5 +1,7 @@
 module FoodNdb
   class Weight < ActiveRecord::Base
-    belongs_to :food
+  	self.primary_keys = :nutrient_databank_number, :sequence
+
+    belongs_to :food, foreign_key: :nutrient_databank_number
   end
 end

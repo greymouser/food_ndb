@@ -1,9 +1,8 @@
 module FoodNdb
   class DataSource < ActiveRecord::Base
-    self.primary_key = 'id'
+    self.primary_key = :id
 
-    has_and_belongs_to_many :foods, join_table: 'food_ndb_food_nutrients_data_sources',
-                            foreign_key: 'data_source_id', association_foreign_key: 'nutrient_databank_number'
+	has_many :food_nutrient_data_source_relations, foreign_key: :data_source_id
+	has_many :food_nutrients, through: :food_nutrient_data_source_relations
   end
 end
-

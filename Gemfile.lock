@@ -39,6 +39,8 @@ GEM
     arel (4.0.0)
     atomic (1.1.13)
     builder (3.1.4)
+    composite_primary_keys (6.0.0)
+      activerecord (>= 4.0.0)
     draper (1.2.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -96,6 +98,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import (>= 0.4.0)
+  composite_primary_keys
   draper
   food_ndb!
   mysql2

@@ -1,19 +1,27 @@
+require "activerecord-import"
+
 module FoodNdb
   class Food < ActiveRecord::Base
-    self.primary_key = 'nutrient_databank_number'
+    self.primary_key = :nutrient_databank_number
 
-    belongs_to :group, class_name: FoodGroup, foreign_key: 'food_group_code'
+    belongs_to :group, class_name: FoodGroup, foreign_key: :food_group_code, primary_key: :code
 
     has_many :footnotes, foreign_key: 'nutrient_databank_number'
 
-    has_many :food_nutrients, foreign_key: 'nutrient_databank_number', include: :nutrient
-    has_many :nutrients, through: :food_nutrients, foreign_key: 'nutrient_databank_number'
-    has_many :sources, through: :food_nutrients, foreign_key: 'nutrient_databank_number'
-    has_many :derivations, through: :food_nutrients, foreign_key: 'nutrient_databank_number'
-    has_and_belongs_to_many :data_sources, join_table: 'food_ndb_food_nutrients_data_sources',
-                            foreign_key: 'nutrient_databank_number', association_foreign_key: 'data_source_id'
+    has_many :food_nutrients, foreign_key: :nutrient_databank_number
+    has_many :nutrients, through: :food_nutrients
+    has_many :sources, through: :food_nutrients
+    has_many :derivations, through: :food_nutrients
 
-    has_many :weights, foreign_key: 'nutrient_databank_number', order: 'sequence ASC'
+    # has_and_belongs_to_many :data_sources, join_table: 'food_ndb_food_nutrients_data_sources',
+    #                         foreign_key: 'nutrient_databank_number', association_foreign_key: 'data_source_id'
+
+    has_many :data_sources, through: :food_nutrients
+
+    has_many :weights, -> { order('sequence ASC') }, foreign_key: 'nutrient_databank_number'
+
+    has_many :food_langual_relations, foreign_key: :nutrient_databank_number
+    has_many :languals, through: :food_langual_relations
 
     has_and_belongs_to_many :languals, join_table: 'food_ndb_foods_languals',
                             foreign_key: 'nutrient_databank_number', association_foreign_key: 'langual_code'
