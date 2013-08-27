@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826170150) do
+ActiveRecord::Schema.define(version: 20130827135111) do
 
   create_table "food_ndb_data_sources", id: false, force: true do |t|
     t.string "id",             limit: 6,   null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20130826170150) do
   end
 
   add_index "food_ndb_food_nutrients", ["derivation_code"], name: "index_food_ndb_food_nutrients_on_derivation_code", using: :btree
-  add_index "food_ndb_food_nutrients", ["nutrient_databank_number", "nutrient_number"], name: "by_food_and_nutrient", using: :btree
+  add_index "food_ndb_food_nutrients", ["nutrient_databank_number", "nutrient_number"], name: "by_food_and_nutrient", unique: true, using: :btree
   add_index "food_ndb_food_nutrients", ["source_code"], name: "index_food_ndb_food_nutrients_on_source_code", using: :btree
 
   create_table "food_ndb_food_nutrients_data_sources", id: false, force: true do |t|
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20130826170150) do
     t.string  "data_source_id",           limit: 6, null: false
   end
 
-  add_index "food_ndb_food_nutrients_data_sources", ["nutrient_databank_number", "nutrient_number", "data_source_id"], name: "by_food_nutrient_and_data_source", using: :btree
+  add_index "food_ndb_food_nutrients_data_sources", ["nutrient_databank_number", "nutrient_number", "data_source_id"], name: "by_food_nutrient_and_data_source", unique: true, using: :btree
 
   create_table "food_ndb_foods", id: false, force: true do |t|
     t.integer "nutrient_databank_number", limit: 3,                                           null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20130826170150) do
     t.string  "the_text",                 limit: 200, null: false
   end
 
-  add_index "food_ndb_footnotes", ["nutrient_databank_number", "sequence", "the_type"], name: "by_food_sequence_and_the_type", using: :btree
+  add_index "food_ndb_footnotes", ["nutrient_databank_number", "sequence"], name: "by_food_and_sequence", using: :btree
 
   create_table "food_ndb_languals", id: false, force: true do |t|
     t.string "code",        limit: 5,   null: false
@@ -145,6 +145,6 @@ ActiveRecord::Schema.define(version: 20130826170150) do
     t.decimal "standard_deviation",                  precision: 10, scale: 3
   end
 
-  add_index "food_ndb_weights", ["nutrient_databank_number", "sequence"], name: "index_food_ndb_weights_on_nutrient_databank_number_and_sequence", using: :btree
+  add_index "food_ndb_weights", ["nutrient_databank_number", "sequence"], name: "index_food_ndb_weights_on_nutrient_databank_number_and_sequence", unique: true, using: :btree
 
 end
