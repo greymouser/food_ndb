@@ -4,7 +4,7 @@
 
 ### Add gem to your Gemfile
 
-	# TBD
+	# TBD, when it's a gem
 	$ bundle update
 
 ### Install migrations
@@ -18,4 +18,10 @@
 	$ rake food_ndb:fetch:ndb
 	$ rake food_ndb:db:seed
 
-The seed process will probably take 5-10 minutes, and will need ~256MiB of RAM.
+The seed process will probably take ~10 minutes, and will need ~600MiB of RAM.
+
+### Test application
+
+The engine has a simple test application located at ./test/dummy which uses the engine, and can be used to test modifications.
+
+food_ndb mount point: http://localhost:3000/food_ndb

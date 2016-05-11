@@ -20,8 +20,8 @@ gemspec
 gem 'activerecord-import', '>= 0.4.0'
 
 ####
-# You're going to have a bad time if you test food_ndb with sqlite3
-gem 'mysql2'
+# You're going to have a bad time if you test food_ndb with sqlite3.
+gem 'mysql2', '~> 0.3.18'
 gem 'draper'
 gem 'will_paginate'
 gem 'composite_primary_keys'
